@@ -3,10 +3,10 @@ import pandas as pd
 from datetime import datetime
 
 def run_merge():
-    input_dir = os.getenv("TRANSACTIONS_DIR")
-    output_dir = os.getenv("MERGED_TRANSACTIONS_DIR")
+    input_dir = "/app/transactions"
+    output_dir = "/app/merged"
     mapping_str = os.getenv("ACCOUNT_FILE_MAPPING")
-    columns_str = os.getenv("TRANSACTION_COLUMS")
+    columns_str = os.getenv("TRANSACTION_COLUMNS")
     has_header_str = os.getenv("HAS_HEADER", "true").lower()
 
     has_header = has_header_str == "true"
@@ -58,7 +58,7 @@ def run_merge():
             df.columns = transaction_columns
             df["account_name"] = account
 
-            merged = pd.contact([merged, df], ignore_index=True)
+            merged = pd.concat([merged, df], ignore_index=True)
 
         except Exception as e:
             print(f"Error reading file {filename}: {e}")

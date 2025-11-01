@@ -6,4 +6,6 @@ services:
       - .env
     volumes:
       - ./:/app
+      - ${TRANSACTIONS_DIR}:/app/transactions
+      - ${MERGED_TRANSACTIONS_DIR}:/app/merged
     tty: true
